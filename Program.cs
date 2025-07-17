@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using Rebus.Activation;
+﻿using Rebus.Activation;
 using Rebus.Bus;
 using Rebus.Config;
 using Rebus.Handlers;
@@ -30,10 +29,6 @@ class TestMessageHandler(IBus bus) : IHandleMessages<TestMessage>
 {
     public async Task Handle(TestMessage message)
     {
-        await using var conn = new NpgsqlConnection(Constants.ConnectionString);
-        await conn.OpenAsync();
-        await using var tx = await conn.BeginTransactionAsync();
-
         await bus.Send(new DomainEvent());
 
         throw new Exception("Test exception to fail transaction");
