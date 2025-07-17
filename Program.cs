@@ -31,7 +31,7 @@ class TestMessageHandler(IBus bus) : IHandleMessages<TestMessage>
     {
         await bus.Send(new DomainEvent());
 
-        throw new Exception("Test exception to fail transaction");
+        throw new Exception("Test exception.");
     }
 }
 
